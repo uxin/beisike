@@ -1,0 +1,47 @@
+/*全局样式定义*/
+.s12 {
+  font-size: 3.2vw;
+}
+
+.s14 {
+  font-size: 3.7333vw;
+}
+
+.s16 {
+  font-size: 4.2667vw;
+}
+
+.s18 {
+  font-size: 4.8vw;
+}
+
+.float_l {
+  float: left;
+}
+
+.float_r {
+  float: right;
+}
+
+// 清除浮动
+.eliminate::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.imgList{
+  width: 100%;
+  height: 100%;
+}
+
+// 盒子居中
+.position_r{
+  position: relative;  //父级
+}
+.position_a {
+  position: absolute;  //子级
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
