@@ -38,11 +38,14 @@ const mutations = { //同步方法
     },
 
     del(state, data) {
-        state.cartList.map((item) => {
+        state.cartList.map((item,index) => {
             if (data.ID == item.ID & data.num >= 1) {
                 item.num--;
-                Store.set("cartList", state.cartList)  //当减减时覆盖当前的值
+                if (item.num <= 0) {
+                    (state.cartList).splice(index, 1)
+                }
             }
+            Store.set("cartList", state.cartList)  //当减减时覆盖当前的值
         })
     },
 
