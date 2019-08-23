@@ -1,5 +1,5 @@
 <template>
-  <div id="my">
+  <div id="my" v-show="bool">
     <!-- 头像 -->
     <div class="portrait">
       <div class="portrait_img">
@@ -71,12 +71,13 @@ import Store from "storejs";
 export default {
   data() {
     return {
-      userInfo: {}
+      userInfo: {},
+      bool:false
     };
   },
   created() {
     let userInfo = Store.get("userInfo");
-    console.log(userInfo.avatar);
+    // console.log(userInfo.avatar);
     if (Store.get("userInfo")) {
       this.userInfo = Store.get("userInfo");
     } else if (Store.get("userInfo") == undefined) {
@@ -88,12 +89,14 @@ export default {
           Toast("取消成功");
         });
     }
+    this.show();
   },
   methods: {
     loginOut() {
       // console.log(Store);
       MessageBox.confirm("是否退出登录")
         .then(action => {
+          this.bool=false
           Store.remove("userInfo");
           MessageBox.confirm("是否去登录")
             .then(action => {
@@ -101,11 +104,17 @@ export default {
             })
             .catch(() => {
               Toast("取消成功");
+              this.bool=false
             });
         })
         .catch(() => {
           Toast("取消成功");
         });
+    },
+    show(){
+      if(Store.get("userInfo") != undefined){
+        this.bool=true;
+      }
     }
   }
 };
