@@ -93,9 +93,7 @@ export default {
     del(item) {
       this.$store.commit("del", item);
       if (item.num == 0) {
-        this.cartListData.splice(this.cartListData.indexOf(item), 1);
-        console.log(this.cartListData);
-
+        // this.cartListData.splice(this.cartListData.indexOf(item), 1);
         Toast("删除成功");
         if (this.cartListData.length <= 0) {
           this.allDel();
@@ -108,6 +106,8 @@ export default {
 
     allDel() {
       Store.remove("cartList");
+      this.$store.state.cartList = [];
+      this.allprice = 0;
       Toast("清空成功");
     },
     count() {
